@@ -1,4 +1,28 @@
-.imgStyle{
-    width: 15px;
-    height: 15px;
+.imgStyle {
+  width: 15px;
+  height: 15px;
+  display: block;
+  margin-right: 24px;
+}
+
+.wrapper {
+  display: flex;
+  margin-top: auto;
+  align-items: center;
+}
+
+.upper {
+  text-transform: uppercase;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 1.25px;
+}
+
+.lower {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 2;
+  letter-spacing: 0.4px;
 }

@@ -1,11 +1,14 @@
 import style from "./Main.module.css";
 import Sidebar from "components/Sidebar/Sidebar";
+import MainContent from "components/MainContent/MainContent";
 
 const Main = () => {
   return (
     <>
-      <Sidebar />
-      <p className={style.container}>Text</p>
+      <div className={style.wrapper}>
+        <Sidebar />
+        <MainContent />
+      </div>
     </>
   );
 };
