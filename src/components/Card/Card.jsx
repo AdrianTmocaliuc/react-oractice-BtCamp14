@@ -4,7 +4,7 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 
 const Card = ({ Svg, category, name }) => {
   return (
-    <Paper>
+    <Paper height={210}>
       <Svg
         style={{
           width: "80px",

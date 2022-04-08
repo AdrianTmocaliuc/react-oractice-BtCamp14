@@ -3,3 +3,12 @@
   width: 80%;
   background-color: #dfdfdf;
 }
+.categoryWrapper {
+  display: flex;
+  flex-shrink: 1;
+  height: 210px;
+}
+
+.card {
+  margin-right: 10px;
+}
