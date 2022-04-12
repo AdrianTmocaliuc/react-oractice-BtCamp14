@@ -5,9 +5,19 @@
 
 .inputLabel{
     display: grid;
+    position: relative;
 
 }
 
 .input{
     padding: 12px 16px;
+}
+.text{
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    transition: transform 250ms linear;
+}
+.input:not(:placeholder-shown)+.text,.input:focus+.text{
+    transform: translateY(-180%);
 }

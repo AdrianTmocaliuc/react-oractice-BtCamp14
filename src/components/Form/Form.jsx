@@ -48,10 +48,11 @@ class Form extends Component {
                 <input
                   className={s.input}
                   name={key}
-                  placeholder={key}
+                  placeholder=" "
                   onChange={onChangeInput}
                   value={this.state[key]}
                 />
+                <span className={s.text}>{key}</span>
               </label>
             ))}
 
