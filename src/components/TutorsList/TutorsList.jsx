@@ -3,6 +3,8 @@ import Button from "components/Button/Button";
 import { tutors } from "db/tutors.json";
 import { HiPlusCircle } from "react-icons/hi";
 import { Component } from "react";
+import Modal from "components/Modal/Modal";
+import Form from "components/Form/Form";
 
 // const TutorsList = ({ tutors = [] }) => {
 //   return (
@@ -37,10 +39,15 @@ class TutorsList extends Component {
 
   render() {
     const { tutors, isShown } = this.state;
-    console.log("🚀 ~ isShown", isShown);
+    // console.log("🚀 ~ isShown", isShown);
     const { clickHandler } = this;
     return (
       <>
+        {isShown && (
+          <Modal closeModal={clickHandler}>
+            <Form />
+          </Modal>
+        )}
         <ul>
           {tutors.map((tutor) => (
             <Tutor tutor={tutor} key={tutor.email} />

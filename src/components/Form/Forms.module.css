@@ -1,0 +1,13 @@
+.form{
+    display: grid;
+    gap: 24px;
+}
+
+.inputLabel{
+    display: grid;
+
+}
+
+.input{
+    padding: 12px 16px;
+}
