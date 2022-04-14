@@ -10,11 +10,27 @@ const svgStyle = {
 };
 
 class Modal extends Component {
+  closeModalByEsc = (e) => {
+    if (e.code === "Escape") {
+      this.props.closeModal();
+    }
+  };
+  closeByBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      this.props.closeModal();
+    }
+  };
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.closeModalByEsc);
+  }
+  componentDidMount() {
+    window.addEventListener("keydown", this.closeModalByEsc);
+  }
   render() {
     const { closeModal, children } = this.props;
     return (
       <>
-        <div className={s.container}>
+        <div className={s.container} onClick={this.closeByBackdropClick}>
           <GrClose style={svgStyle} onClick={closeModal} />
           {children}
         </div>

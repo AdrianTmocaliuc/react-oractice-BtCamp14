@@ -29,14 +29,21 @@ class Form extends Component {
     this.setState({ [name]: value });
   };
 
+  checkIsActive = () => {
+    return Object.values(this.state).every((value) => !!value);
+  };
+
+  // componentDidUpdate(prevProps, prevState) {}
+
   onSubmitForm = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    this.props.addTutor({ id: this.state.email, ...this.state });
+    this.setState(INITIAL_STATE);
   };
 
   render() {
     const { title } = this.props;
-    const { onChangeInput, onSubmitForm } = this;
+    const { onChangeInput, onSubmitForm, checkIsActive } = this;
     return (
       <Paper>
         <form className={s.form} onSubmit={onSubmitForm}>
@@ -51,6 +58,7 @@ class Form extends Component {
                   placeholder=" "
                   onChange={onChangeInput}
                   value={this.state[key]}
+                  required
                 />
                 <span className={s.text}>{key}</span>
               </label>
@@ -60,7 +68,7 @@ class Form extends Component {
 
           {TYPES.FILIAL && <></>}
 
-          <Button type="submit" name="ПРИГЛАСИТЬ" />
+          <Button type="submit" name="ПРИГЛАСИТЬ" isActive={!checkIsActive()} />
         </form>
       </Paper>
     );
