@@ -1,8 +1,10 @@
+import { useSelector, useDispatch } from "react-redux";
+import { actions } from "redux/tutors/reducer";
 import Tutor from "components/Tutor/Tutor";
 import Button from "components/Button/Button";
 import tutorsList from "db/tutors.json";
 import { HiPlusCircle } from "react-icons/hi";
-import { Component, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "components/Modal/Modal";
 import Form from "components/Form/Form";
 import s from "./TutorList.module.css";
@@ -10,15 +12,20 @@ import s from "./TutorList.module.css";
 export default TutorsList;
 
 function TutorsList() {
-  const [tutors, setTutors] = useState([]);
+  // const [tutors, setTutors] = useState([]);
+  const tutors = useSelector((state) => state.tutors);
   const [isShown, setIsShown] = useState(false);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    setTutors(tutorsList)
-  }, [])
+    dispatch(actions.init(tutorsList));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const addTutor = (tutor) => {
-    setTutors(prevTutors => [...prevTutors, tutor]);
+    dispatch(actions.add(tutor));
+    // setTutors((prevTutors) => [...prevTutors, tutor]);
   };
 
   const clickHandler = () => {
@@ -32,23 +39,23 @@ function TutorsList() {
   return (
     <>
       {isShown && (
-          <Modal closeModal={clickHandler}>
-            <Form addTutor={addTutor} />
-          </Modal>
-        )}
-        <ul className={s.list}>
-          {tutors.map((tutor) => (
-            <Tutor tutor={tutor} key={tutor.email} />
-          ))}
-        </ul>
-        <Button
-          type="button"
-          name="Добавить преподавателя"
-          clickHandler={clickHandler}
-          icon={<HiPlusCircle />}
-        />
+        <Modal closeModal={clickHandler}>
+          <Form addTutor={addTutor} />
+        </Modal>
+      )}
+      <ul className={s.list}>
+        {tutors.map((tutor) => (
+          <Tutor tutor={tutor} key={tutor.email} />
+        ))}
+      </ul>
+      <Button
+        type="button"
+        name="Добавить преподавателя"
+        clickHandler={clickHandler}
+        icon={<HiPlusCircle />}
+      />
     </>
-  )
+  );
 }
 
 // const TutorsList = ({ tutors = [] }) => {
