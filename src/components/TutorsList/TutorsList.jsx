@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { actions } from "redux/tutors/reducer";
+import tutorSlice from "redux/tutors/tutorsReducer";
 import Tutor from "components/Tutor/Tutor";
 import Button from "components/Button/Button";
 import tutorsList from "db/tutors.json";
@@ -13,18 +13,19 @@ export default TutorsList;
 
 function TutorsList() {
   // const [tutors, setTutors] = useState([]);
-  const tutors = useSelector((state) => state.tutors);
+  const tutors = useSelector((state) => state.tutors.tutors);
+  console.log("🚀 ~ tutors", tutors);
   const [isShown, setIsShown] = useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.init(tutorsList));
+    dispatch(tutorSlice.actions.actionInitTutors(tutorsList));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addTutor = (tutor) => {
-    dispatch(actions.add(tutor));
+    dispatch(tutorSlice.actions.actionAddTutor(tutor));
     // setTutors((prevTutors) => [...prevTutors, tutor]);
   };
 
